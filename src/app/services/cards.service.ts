@@ -14,7 +14,7 @@ export class CardsService {
 
 // Method get all cards
 getAllCards():Observable<Card []>{
-  return this.http.get<Card []>(this.baseUrl);
+  return this.http.get<Card[]>(this.baseUrl);
 }
 
 addCard(card:Card):Observable<Card>{
@@ -22,6 +22,9 @@ addCard(card:Card):Observable<Card>{
   return this.http.post<Card>(this.baseUrl,card);
 }
 
+deleteCard(id: string): Observable<Card>{
+  return this.http.delete<Card>(this.baseUrl+'/'+id);
+}
 
 }
 
