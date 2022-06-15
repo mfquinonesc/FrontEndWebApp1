@@ -4,32 +4,35 @@
   </div>
   
   <div class="cards-form">
-      <form class="form-container" action="">
+      <form #form="ngForm" (ngSubmit)="onSubmit()" class="form-container" >
 
         <div class="form-group">
-          <label for="">Card Name :</label>
-          <input type="text" name="cardName">
+          <label for="">Card Name</label>
+          <input type="text" name="cardName" [(ngModel)]="card.cardHolderName">
         </div>
 
         <div class="form-group">
-          <label for="">Card Number :</label>
-          <input type="text" name="cardNumber">
+          <label for="">Card Number</label>
+          <input type="text" name="cardNumber" [(ngModel)]="card.cardNumber">
         </div>
   
           <div class="form-group">
             <label for="">CVC</label>
-            <input type="text" name="cvc">
+            <input type="text" name="cvc" [(ngModel)]="card.cvc">
           </div>   
 
           <div class="form-group">
             <label for="">Expiry Month</label>
-            <input type="text" name="expiryMonth">
+            <input type="text" name="expiryMonth" [(ngModel)]="card.expiryMonth">
           </div>    
 
           <div class="form-group">
             <label for="">Expiry Year</label>
-            <input type="text" name="expiryYear">
+            <input type="text" name="expiryYear" [(ngModel)]="card.expiryYear">
           </div>    
+          <div class="form-group">
+            <button>Save</button>
+          </div>
       </form>
       
       <div class="list-container" >
