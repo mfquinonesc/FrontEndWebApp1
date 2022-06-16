@@ -9,7 +9,7 @@ import { CardsService } from './services/cards.service';
 })
 export class AppComponent implements OnInit{
   title = 'Cards';
-  cards: Card[] =[];
+  cards: Card[] = [];
   card: Card = {
     id:'',
     cardHolderName:'',
@@ -36,22 +36,28 @@ export class AppComponent implements OnInit{
   }
 
   onSubmit(){  
-   this.CardService.addCard(this.card)
-   .subscribe(
-    response => {
-      this.getAllCards();
-      // this.card = response;
-      this.card = {
-        id:'',
-        cardHolderName:'',
-        cardNumber: '',
-        cvc:'',
-        expiryMonth:'',
-        expiryYear:''
-      };
-      console.log(response);      
+    if(this.card.id === ''){
+      console.log(this.card);
+      this.CardService.addCard(this.card)
+      .subscribe( response => {
+        console.log(response);
+        this.card = {
+          id:'',
+          cardHolderName:'',
+          cardNumber: '',
+          cvc:'',
+          expiryMonth:'',
+          expiryYear:''
+        };
+        this.getAllCards();
+      }      
+      )  
+    }else{
+      this.updateCard(this.card);
     }
-   );
+
+   
+ 
   }
 
   deleteCard(id:string){
@@ -60,8 +66,22 @@ export class AppComponent implements OnInit{
       response => {
         this.getAllCards();
       }
-    )
+    );
   }
 
- 
+  populateForm(card:Card){
+    this.card = card;
+  }
+
+  updateCard(card:Card){
+    this.CardService.updateCard(card)
+    .subscribe(
+      response => {
+        this.getAllCards();
+      }
+    );
+  }
+
+
+
 }

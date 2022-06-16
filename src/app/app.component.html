@@ -4,7 +4,7 @@
   </div>
   
   <div class="cards-form">
-      <form #form="ngForm" (ngSubmit)="onSubmit()" class="form-container" >
+      <form class="form-container" #form="ngForm" (ngSubmit)="onSubmit()"  >
 
         <div class="form-group">
           <label for="">Card Name</label>
@@ -36,7 +36,7 @@
       </form>
       
       <div class="list-container" >
-        <div class="card-row" *ngFor="let card of cards">
+        <div (click)="populateForm(card)" class="card-row" *ngFor="let card of cards">
           <div class="card-row-details" >
             <span>{{card.cardHolderName}}</span>
             <span>{{card.cardNumber}}</span>
